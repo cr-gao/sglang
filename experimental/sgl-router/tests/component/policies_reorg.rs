@@ -185,17 +185,20 @@ fn resolve_orders_all_length_fits_by_capacity_rank_and_id() {
     ]);
     assert_eq!(
         resolver
-            .resolve(10, None)
+            .resolve(10, None, None, None)
             .unwrap()
             .iter()
             .map(|bucket| bucket.id.as_str())
             .collect::<Vec<_>>(),
         ["a", "z", "later", "catch-all"]
     );
-    assert_eq!(resolver.resolve(11, None).unwrap()[0].id, "min");
-    assert_eq!(resolver.resolve(15, None).unwrap()[0].id, "min");
-    assert_eq!(resolver.resolve(20, None).unwrap()[0].id, "a");
-    assert_eq!(resolver.resolve(21, None).unwrap()[0].id, "catch-all");
+    assert_eq!(resolver.resolve(11, None, None, None).unwrap()[0].id, "min");
+    assert_eq!(resolver.resolve(15, None, None, None).unwrap()[0].id, "min");
+    assert_eq!(resolver.resolve(20, None, None, None).unwrap()[0].id, "a");
+    assert_eq!(
+        resolver.resolve(21, None, None, None).unwrap()[0].id,
+        "catch-all"
+    );
 }
 
 #[test]
@@ -206,17 +209,29 @@ fn context_capacity_checks_peak_when_known_and_input_otherwise() {
     let mut long = bucket("long", None, policy);
     long.max_context_tokens = Some(30);
     let resolver = BucketResolver::new(vec![long, short]);
-    assert_eq!(resolver.resolve(10, None).unwrap()[0].id, "short");
-    assert_eq!(resolver.resolve(10, Some(20)).unwrap()[0].id, "short");
-    assert_eq!(resolver.resolve(10, Some(21)).unwrap()[0].id, "long");
-    assert!(resolver.resolve(10, Some(31)).unwrap().is_empty());
-    assert!(resolver.resolve(31, None).unwrap().is_empty());
+    assert_eq!(
+        resolver.resolve(10, None, None, None).unwrap()[0].id,
+        "short"
+    );
+    assert_eq!(
+        resolver.resolve(10, Some(20), None, None).unwrap()[0].id,
+        "short"
+    );
+    assert_eq!(
+        resolver.resolve(10, Some(21), None, None).unwrap()[0].id,
+        "long"
+    );
+    assert!(resolver
+        .resolve(10, Some(31), None, None)
+        .unwrap()
+        .is_empty());
+    assert!(resolver.resolve(31, None, None, None).unwrap().is_empty());
     assert!(matches!(
-        resolver.resolve(10, Some(9)),
+        resolver.resolve(10, Some(9), None, None),
         Err(PickError::InvalidSignal(_))
     ));
     assert!(BucketResolver::default()
-        .resolve(1, None)
+        .resolve(1, None, None, None)
         .unwrap()
         .is_empty());
 }
@@ -236,7 +251,7 @@ async fn selected_pd_bucket_owns_both_memberships_and_policies() {
             decode: group(&["d2", "p", "other"], decode_policy.clone()),
         },
     )]);
-    let bucket = resolver.resolve(10, Some(20)).unwrap()[0];
+    let bucket = resolver.resolve(10, Some(20), None, None).unwrap()[0];
     let request = BucketRequest {
         prefix: None,
         model: &model,
@@ -267,7 +282,7 @@ async fn resolver_includes_empty_groups_without_invoking_policies() {
         max: Some(10),
     };
     let resolver = BucketResolver::new(vec![empty, bucket("available", Some(20), policy.clone())]);
-    let buckets = resolver.resolve(10, None).unwrap();
+    let buckets = resolver.resolve(10, None, None, None).unwrap();
     assert_eq!(
         buckets
             .iter()
