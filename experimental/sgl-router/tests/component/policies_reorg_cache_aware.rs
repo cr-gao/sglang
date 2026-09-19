@@ -9,14 +9,14 @@ use sgl_kv_indexer::{PrefixIndex, PrefixIndexError, PrefixMatch, PrefixOutcome};
 use sgl_router::config::AffinityConfig;
 use sgl_router::discovery::{ModelId, WorkerId, WorkerSpec};
 use sgl_router::policies::prefix_provider::RadixTreePrefixProvider;
-use sgl_router::policies_reorg::admission::{Decision, EngineAdmission};
+use sgl_router::policies_reorg::admission::{Decision, EngineAdmission, EngineMetrics};
 use sgl_router::policies_reorg::cache_aware::{CacheAwarePolicy, CacheSource, PrefixMemo};
 use sgl_router::policies_reorg::{PickError, PickRequest, Policy, Stage};
 use sgl_router::state::kv_events::{
     compute_block_hashes, compute_block_hashes_bigram, BlockSizeOracle, HashTree, KvWorkerId,
 };
 use sgl_router::state::load_monitor::engine_reported_load::{
-    EngineReportedLoadTable, EngineReportedWorkerLoad, LoadStat, NativeCacheRankLoad,
+    EngineReportedLoadTable, LoadStat, NativeCacheRankLoad,
 };
 use sgl_router::workers::Worker;
 
@@ -114,16 +114,11 @@ impl Reject {
 }
 
 impl EngineAdmission for Reject {
-    fn check(
-        &self,
-        engine: &Worker,
-        _: &PickRequest<'_>,
-        load: Option<&EngineReportedWorkerLoad>,
-    ) -> Result<Decision, PickError> {
+    fn check(&self, engine: &Worker, metrics: &EngineMetrics) -> Result<Decision, PickError> {
         self.calls
             .lock()
             .unwrap()
-            .push((engine.id.0.clone(), load.map(|load| load.num_waiting_reqs)));
+            .push((engine.id.0.clone(), metrics.waiting_requests));
         Ok(if engine.id.0 == self.id {
             Decision::Reject("full".into())
         } else {
