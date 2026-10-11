@@ -67,11 +67,12 @@ def test_dpm_constant_data_prediction_reaches_clean_endpoint():
 
 
 def test_ti2v_euler_preserves_condition_and_uses_frame_timestep():
-    initial = torch.zeros(1, 2, 3, 1, 1)
+    initial = torch.zeros(2, 4, 3, 2, 5)
     initial[:, :, 0] = 7
     seen = []
 
     def predict_flow(x, time):
+        assert time.untyped_storage().nbytes() == time.numel() * time.element_size()
         seen.append(time.clone())
         return torch.ones_like(x)
 
@@ -79,7 +80,7 @@ def test_ti2v_euler_preserves_condition_and_uses_frame_timestep():
     torch.testing.assert_close(actual[:, :, 0], initial[:, :, 0], atol=0, rtol=0)
     torch.testing.assert_close(actual[:, :, 1:], -torch.ones_like(actual[:, :, 1:]))
     assert len(seen) == 4
-    assert all(time.shape == (1, 1, 3, 1, 1) for time in seen)
+    assert all(time.shape == (2, 1, 3, 1, 1) for time in seen)
     assert all(torch.count_nonzero(time[:, :, 0]) == 0 for time in seen)
     assert all(torch.all(time[:, :, 1:] > 0) for time in seen)
 

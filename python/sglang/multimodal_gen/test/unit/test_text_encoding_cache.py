@@ -50,6 +50,9 @@ from sglang.multimodal_gen.runtime.pipelines_core.stages.model_specific_stages.l
 from sglang.multimodal_gen.runtime.pipelines_core.stages.model_specific_stages.ming_image import (
     MingImageEncodingStage,
 )
+from sglang.multimodal_gen.runtime.pipelines_core.stages.model_specific_stages.sana_video2 import (
+    SanaVideo2TextEncodingStage,
+)
 from sglang.multimodal_gen.runtime.pipelines_core.stages.realtime.text_encoding import (
     RealtimeTextEncodingStage,
     RealtimeTextState,
@@ -237,6 +240,51 @@ def make_server_args(**kwargs):
     }
     defaults.update(kwargs)
     return SimpleNamespace(**defaults)
+
+
+@pytest.mark.parametrize("capacity", [0, 4096])
+@torch.no_grad()
+def test_sana_video2_reuses_negative_conditioning(capacity):
+    encoder = LibraryEncoder().eval()
+    args = make_server_args(pipeline_config=make_text_config())
+    with patch(_GLOBAL_ARGS_PATCH, return_value=MagicMock()):
+        stage = SanaVideo2TextEncodingStage([encoder], [SimpleNamespace()], "")
+    stage._begin_text_encoder_use = Mock()
+    stage._text_encode_dp_group = Mock(return_value=None)
+    stage.encode_text = partial(stage.encode_text, device="cpu")
+    cache = ConditioningCache(capacity)
+
+    def encode(prompt, negative_prompt):
+        batch = make_req(
+            prompt=prompt,
+            negative_prompt=negative_prompt,
+            max_sequence_length=2,
+            extra={},
+            prompt_embeds=[],
+            pooled_embeds=[],
+            prompt_attention_mask=None,
+            negative_prompt_embeds=[],
+            neg_pooled_embeds=[],
+            negative_attention_mask=None,
+        )
+        with cache.scope():
+            return stage.forward(batch, args)
+
+    first = encode("a fox", "bad quality")
+    repeated = encode("a sleeping cat", "bad quality")
+    assert encoder.calls == (3 if capacity else 4)
+    torch.testing.assert_close(
+        first.negative_prompt_embeds[0],
+        repeated.negative_prompt_embeds[0],
+        rtol=0,
+        atol=0,
+    )
+    calls = encoder.calls
+    changed = encode("a fox", "blur")
+    assert encoder.calls == calls + 2
+    assert not torch.equal(
+        first.negative_prompt_embeds[0], changed.negative_prompt_embeds[0]
+    )
 
 
 def make_group_executor(

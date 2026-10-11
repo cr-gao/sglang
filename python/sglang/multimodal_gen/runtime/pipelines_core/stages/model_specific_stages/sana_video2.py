@@ -8,6 +8,7 @@ from diffusers import FlowMatchEulerDiscreteScheduler
 from diffusers.utils.torch_utils import randn_tensor
 from PIL import Image
 
+from sglang.multimodal_gen.runtime.cache.conditioning import prefer_conditioning_cache
 from sglang.multimodal_gen.runtime.disaggregation.roles import RoleType
 from sglang.multimodal_gen.runtime.managers.memory_managers.component_manager import (
     ComponentUse,
@@ -62,20 +63,18 @@ def sample_ltx_euler(predict_flow, latents, steps, shift, callback=None):
     with torch.device("cpu"):
         scheduler = FlowMatchEulerDiscreteScheduler(shift=shift)
         scheduler.set_timesteps(steps, device=latents.device)
-    condition_mask = torch.zeros_like(latents, dtype=torch.float32)
+    condition_mask = torch.zeros_like(latents[:, :1, :, :1, :1], dtype=torch.float32)
     condition_mask[:, :, 0] = 1
     for index, time in enumerate(scheduler.timesteps):
-        timestep = torch.minimum(
-            time.expand(latents.shape).float(), (1 - condition_mask) * 1000.0
-        )
-        prediction = predict_flow(latents, timestep[:, :1, :, :1, :1])
+        timestep = torch.minimum(time.float(), (1 - condition_mask) * 1000.0)
+        prediction = predict_flow(latents, timestep)
         batch, channels = latents.shape[:2]
         updated = (
             scheduler.step(
                 -prediction.reshape(batch, channels, -1).transpose(1, 2),
                 time,
                 latents.reshape(batch, channels, -1).transpose(1, 2),
-                per_token_timesteps=timestep.reshape(batch, channels, -1)[:, 0],
+                per_token_timesteps=timestep.expand_as(latents[:, :1]).flatten(1),
                 return_dict=False,
             )[0]
             .transpose(1, 2)
@@ -132,12 +131,13 @@ class SanaVideo2TextEncodingStage(TextEncodingStage):
         ]
         self._append_positive_text_outputs(batch, *outputs)
         if batch.do_classifier_free_guidance:
-            negative = self.encode_text(
-                batch.negative_prompt,
-                server_args,
-                return_attention_mask=True,
-                max_length=length,
-            )
+            with prefer_conditioning_cache():
+                negative = self.encode_text(
+                    batch.negative_prompt,
+                    server_args,
+                    return_attention_mask=True,
+                    max_length=length,
+                )
             self._append_negative_text_outputs(batch, outputs[0], *negative)
         return batch
 
