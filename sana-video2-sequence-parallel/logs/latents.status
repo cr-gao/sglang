@@ -1,0 +1,5 @@
+p480-fp32-lat gpu1 exit=0
+p480-fp32-lat gpu2 exit=0
+p480-bf16-lat gpu1 exit=0
+p480-bf16-lat gpu2 exit=0
+done
