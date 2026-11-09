@@ -2,7 +2,7 @@
 
 Evidence for the pull request "[Feat] diffusion/sana-video2: Support sequence parallelism"
 (sgl-project/sglang#49405). The code under test is the branch
-`perf/sana-video2-sequence-parallel` at 84646ecd1c.
+`perf/sana-video2-sequence-parallel`. The measurements below were taken at 84646ecd1c; the default-mode run and `logs/final2.log` at the following commit, which only adds startup validation and deployment defaults.
 
 Setup: 2x A800-SXM4-80GB (NVLink), torch 2.13.0+cu130, official 5B checkpoint, all components
 resident, no torch.compile, no breakable CUDA graph, CFG 8, seed 42, prompt
@@ -21,6 +21,11 @@ resident, no torch.compile, no breakable CUDA graph, CFG 8, seed 42, prompt
 
 1280x736 / 193 frames: peak allocated 33.2 GB -> 27.0 GB per rank, peak reserved
 48.0 GB -> 35.4 GB.
+
+Default performance mode with only `num_gpus` set (`scripts/run_auto.sh`,
+`logs/p480-auto-gpu{1,2}.log`): two GPUs resolve to `sp_degree=2`,
+`enable_cfg_parallel=false`; 832x480 / 81 frames T2V 36.75 s -> 21.42 s, TI2V
+36.86 s -> 22.60 s. The video comparison reports equal the manual-mode ones.
 
 ## Agreement with one GPU
 
@@ -80,7 +85,7 @@ texture. Only these still frames were inspected; the videos were not played back
 
 `logs/red.log` (before the implementation: 3 failed, 1 passed), `logs/red2.log` (frame
 alignment test before its fix), `logs/green1.log`, `logs/green2.log`, `logs/final.log`
-(52 passed). `logs/green3.log` has one failure in the unrelated SANA-Video 2B test
+(52 passed), `logs/red3.log` (degree check and deployment defaults before their implementation: 2 failed), `logs/final2.log` (53 passed). `logs/green3.log` has one failure in the unrelated SANA-Video 2B test
 `test_sana_prompt_mask_is_cast_once_per_forward` (`FileNotFoundError: 'ninja'` on this box).
 
 `logs/p480-gpu2-89frames.log` is the first two-GPU run, before frame alignment to the GPU

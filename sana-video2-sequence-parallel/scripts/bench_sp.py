@@ -27,6 +27,7 @@ def main():
     parser.add_argument("--profile", action="store_true", help="one extra profiled request per task")
     parser.add_argument("--transformer-precision", default=None)
     parser.add_argument("--no-parallel-decode", action="store_true")
+    parser.add_argument("--performance-mode", default="manual")
     args = parser.parse_args()
     args.output_dir.mkdir(parents=True, exist_ok=True)
     extra = {"vae_config.use_parallel_decode": False} if args.no_parallel_decode else {}
@@ -37,16 +38,18 @@ def main():
         component_paths={"text_encoder": str(MODEL_ROOT / "gemma-2-2b-it"),
                          "vae": str(MODEL_ROOT / "ltx-2.3-vae")},
         num_gpus=args.num_gpus,
-        performance_mode="manual",
-        component_residency={"all": "resident"},
-        enable_torch_compile=False,
-        enable_breakable_cuda_graph=False,
+        performance_mode=args.performance_mode,
+        **({"component_residency": {"all": "resident"}, "enable_torch_compile": False,
+            "enable_breakable_cuda_graph": False} if args.performance_mode == "manual" else {}),
         warmup_mode="off",
         component_precisions=(
             {"transformer": args.transformer_precision} if args.transformer_precision else {}
         ),
     )
     print(json.dumps({"event": "configuration", "num_gpus": args.num_gpus,
+                      "performance_mode": args.performance_mode,
+                      "enable_torch_compile": server_args.enable_torch_compile,
+                      "enable_breakable_cuda_graph": server_args.enable_breakable_cuda_graph,
                       **{k: getattr(server_args, k) for k in (
                           "sp_degree", "ulysses_degree", "ring_degree", "kv_gather_degree",
                           "sp_split_auto", "tp_size", "enable_cfg_parallel")},
