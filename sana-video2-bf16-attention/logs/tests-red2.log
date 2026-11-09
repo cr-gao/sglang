@@ -1,0 +1,213 @@
+..................FFFFF........                                          [100%]
+=================================== FAILURES ===================================
+___________ test_denoising_uses_request_flow_shift[None-12.0-False] ____________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f9c0c099610>
+conditioned = False, flow_shift = None, expected = 12.0
+
+    @pytest.mark.parametrize("conditioned", [False, True])
+    @pytest.mark.parametrize("flow_shift, expected", [(None, 12.0), (3.0, 3.0)])
+    def test_denoising_uses_request_flow_shift(
+        monkeypatch, conditioned, flow_shift, expected
+    ):
+        shifts = []
+    
+        def sample(predict, latents, steps, shift, callback):
+            shifts.append(shift)
+            return latents
+    
+        monkeypatch.setattr(
+            sana_video2, "sample_ltx_euler" if conditioned else "sample_flow_dpm", sample
+        )
+        stage = _denoising_stage()
+>       batch = _denoising_batch(
+            condition_image=object() if conditioned else None, flow_shift=flow_shift
+        )
+
+python/sglang/multimodal_gen/test/unit/test_sana_video2_pipeline.py:102: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+quality = 'exact', overrides = {'condition_image': None, 'flow_shift': None}
+
+    def _denoising_batch(quality="exact", **overrides):
+>       return SimpleNamespace(
+            do_classifier_free_guidance=False,
+            prompt_embeds=[torch.zeros(1, 300, 4)],
+            prompt_attention_mask=[torch.ones(1, 300)],
+            condition_image=None,
+            latents=torch.zeros(1, 2, 3, 1, 1),
+            num_inference_steps=2,
+            is_warmup=False,
+            flow_shift=None,
+            sampling_params=SimpleNamespace(quality=quality),
+            **overrides,
+        )
+E       TypeError: types.SimpleNamespace() got multiple values for keyword argument 'condition_image'
+
+python/sglang/multimodal_gen/test/unit/test_sana_video2_pipeline.py:119: TypeError
+____________ test_denoising_uses_request_flow_shift[None-12.0-True] ____________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f9c2bf68170>
+conditioned = True, flow_shift = None, expected = 12.0
+
+    @pytest.mark.parametrize("conditioned", [False, True])
+    @pytest.mark.parametrize("flow_shift, expected", [(None, 12.0), (3.0, 3.0)])
+    def test_denoising_uses_request_flow_shift(
+        monkeypatch, conditioned, flow_shift, expected
+    ):
+        shifts = []
+    
+        def sample(predict, latents, steps, shift, callback):
+            shifts.append(shift)
+            return latents
+    
+        monkeypatch.setattr(
+            sana_video2, "sample_ltx_euler" if conditioned else "sample_flow_dpm", sample
+        )
+        stage = _denoising_stage()
+>       batch = _denoising_batch(
+            condition_image=object() if conditioned else None, flow_shift=flow_shift
+        )
+
+python/sglang/multimodal_gen/test/unit/test_sana_video2_pipeline.py:102: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+quality = 'exact'
+overrides = {'condition_image': <object object at 0x7f9bc6d557f0>, 'flow_shift': None}
+
+    def _denoising_batch(quality="exact", **overrides):
+>       return SimpleNamespace(
+            do_classifier_free_guidance=False,
+            prompt_embeds=[torch.zeros(1, 300, 4)],
+            prompt_attention_mask=[torch.ones(1, 300)],
+            condition_image=None,
+            latents=torch.zeros(1, 2, 3, 1, 1),
+            num_inference_steps=2,
+            is_warmup=False,
+            flow_shift=None,
+            sampling_params=SimpleNamespace(quality=quality),
+            **overrides,
+        )
+E       TypeError: types.SimpleNamespace() got multiple values for keyword argument 'condition_image'
+
+python/sglang/multimodal_gen/test/unit/test_sana_video2_pipeline.py:119: TypeError
+____________ test_denoising_uses_request_flow_shift[3.0-3.0-False] _____________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f9bc5ca53d0>
+conditioned = False, flow_shift = 3.0, expected = 3.0
+
+    @pytest.mark.parametrize("conditioned", [False, True])
+    @pytest.mark.parametrize("flow_shift, expected", [(None, 12.0), (3.0, 3.0)])
+    def test_denoising_uses_request_flow_shift(
+        monkeypatch, conditioned, flow_shift, expected
+    ):
+        shifts = []
+    
+        def sample(predict, latents, steps, shift, callback):
+            shifts.append(shift)
+            return latents
+    
+        monkeypatch.setattr(
+            sana_video2, "sample_ltx_euler" if conditioned else "sample_flow_dpm", sample
+        )
+        stage = _denoising_stage()
+>       batch = _denoising_batch(
+            condition_image=object() if conditioned else None, flow_shift=flow_shift
+        )
+
+python/sglang/multimodal_gen/test/unit/test_sana_video2_pipeline.py:102: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+quality = 'exact', overrides = {'condition_image': None, 'flow_shift': 3.0}
+
+    def _denoising_batch(quality="exact", **overrides):
+>       return SimpleNamespace(
+            do_classifier_free_guidance=False,
+            prompt_embeds=[torch.zeros(1, 300, 4)],
+            prompt_attention_mask=[torch.ones(1, 300)],
+            condition_image=None,
+            latents=torch.zeros(1, 2, 3, 1, 1),
+            num_inference_steps=2,
+            is_warmup=False,
+            flow_shift=None,
+            sampling_params=SimpleNamespace(quality=quality),
+            **overrides,
+        )
+E       TypeError: types.SimpleNamespace() got multiple values for keyword argument 'condition_image'
+
+python/sglang/multimodal_gen/test/unit/test_sana_video2_pipeline.py:119: TypeError
+_____________ test_denoising_uses_request_flow_shift[3.0-3.0-True] _____________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f9bc5ca4e90>
+conditioned = True, flow_shift = 3.0, expected = 3.0
+
+    @pytest.mark.parametrize("conditioned", [False, True])
+    @pytest.mark.parametrize("flow_shift, expected", [(None, 12.0), (3.0, 3.0)])
+    def test_denoising_uses_request_flow_shift(
+        monkeypatch, conditioned, flow_shift, expected
+    ):
+        shifts = []
+    
+        def sample(predict, latents, steps, shift, callback):
+            shifts.append(shift)
+            return latents
+    
+        monkeypatch.setattr(
+            sana_video2, "sample_ltx_euler" if conditioned else "sample_flow_dpm", sample
+        )
+        stage = _denoising_stage()
+>       batch = _denoising_batch(
+            condition_image=object() if conditioned else None, flow_shift=flow_shift
+        )
+
+python/sglang/multimodal_gen/test/unit/test_sana_video2_pipeline.py:102: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+quality = 'exact'
+overrides = {'condition_image': <object object at 0x7f9bc6d55820>, 'flow_shift': 3.0}
+
+    def _denoising_batch(quality="exact", **overrides):
+>       return SimpleNamespace(
+            do_classifier_free_guidance=False,
+            prompt_embeds=[torch.zeros(1, 300, 4)],
+            prompt_attention_mask=[torch.ones(1, 300)],
+            condition_image=None,
+            latents=torch.zeros(1, 2, 3, 1, 1),
+            num_inference_steps=2,
+            is_warmup=False,
+            flow_shift=None,
+            sampling_params=SimpleNamespace(quality=quality),
+            **overrides,
+        )
+E       TypeError: types.SimpleNamespace() got multiple values for keyword argument 'condition_image'
+
+python/sglang/multimodal_gen/test/unit/test_sana_video2_pipeline.py:119: TypeError
+__________ test_denoising_toggles_quality_fusions_at_quality_changes ___________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f9bc5ca5e20>
+
+    def test_denoising_toggles_quality_fusions_at_quality_changes(monkeypatch):
+        toggles = []
+        monkeypatch.setattr(sana_video2, "sample_flow_dpm", lambda *args, **_: args[1])
+>       monkeypatch.setattr(
+            sana_video2,
+            "toggle_quality_fusions",
+            lambda transformers, quality: toggles.append((transformers, quality)),
+        )
+E       AttributeError: <module 'sglang.multimodal_gen.runtime.pipelines_core.stages.model_specific_stages.sana_video2' from '/root/autodl-tmp/sglang-sana-video2-bf16attn-20261108/worktree/python/sglang/multimodal_gen/runtime/pipelines_core/stages/model_specific_stages/sana_video2.py'> has no attribute 'toggle_quality_fusions'
+
+python/sglang/multimodal_gen/test/unit/test_sana_video2_pipeline.py:136: AttributeError
+=============================== warnings summary ===============================
+../../vllm-omni/.venv/lib/python3.12/site-packages/torch/jit/_script.py:365: 14 warnings
+  /root/autodl-tmp/vllm-omni/.venv/lib/python3.12/site-packages/torch/jit/_script.py:365: DeprecationWarning: `torch.jit.script_method` is deprecated. Please switch to `torch.compile` or `torch.export`.
+    warnings.warn(
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED test::test_denoising_uses_request_flow_shift[None-12.0-False] - TypeEr...
+FAILED test::test_denoising_uses_request_flow_shift[None-12.0-True] - TypeErr...
+FAILED test::test_denoising_uses_request_flow_shift[3.0-3.0-False] - TypeErro...
+FAILED test::test_denoising_uses_request_flow_shift[3.0-3.0-True] - TypeError...
+FAILED test::test_denoising_toggles_quality_fusions_at_quality_changes - Attr...
+5 failed, 26 passed, 24 deselected, 14 warnings in 5.17s
+exit=1

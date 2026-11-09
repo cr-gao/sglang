@@ -1,0 +1,186 @@
+Skipping pipeline module sglang.multimodal_gen.runtime.pipelines.hunyuan3d_pipeline during discovery due to import failure: No module named 'trimesh'
+--model-id 'Efficient-Large-Model/SANA-Video_2.0_5B_720p' did not match any registered model; falling back to automatic detection.
+More than one model name is matched, using the first matched
+[11-09 10:31:46] server_args: {"model_path": "/root/autodl-tmp/models/sana-video2-sp-pinned/sana-video2-5b", "model_subfolder": null, "model_variant": null, "model_id": "Efficient-Large-Model/SANA-Video_2.0_5B_720p", "served_model_name": "Efficient-Large-Model/SANA-Video_2.0_5B_720p", "backend": "auto", "attention_backend": null, "enable_attention_backend_autotune": false, "attention_backend_config": {}, "component_attention_backends": {}, "component_attention_backend_roles": {}, "cache_dit_config": null, "nccl_port": null, "enable_nccl_nvls": false, "trust_remote_code": false, "revision": null, "num_gpus": 1, "performance_mode": "manual", "base_gpu_id": 0, "gpu_ids": null, "numa_node": null, "nnodes": 1, "node_rank": 0, "dist_init_addr": null, "tp_size": 1, "sp_degree": 1, "ulysses_degree": 1, "ring_degree": 1, "kv_gather_degree": 1, "sp_split_auto": false, "dp_size": 1, "enable_cfg_parallel": false, "cfg_parallel_degree": 1, "encoder_parallel": "auto", "hsdp_replicate_dim": 1, "hsdp_shard_dim": 1, "dist_timeout": 3600, "scheduler_rpc_timeout": null, "pipeline_class_name": null, "lora_path": null, "lora_nickname": "default", "lora_scale": 1.0, "lora_alpha": null, "lora_merge_mode": "auto", "lora_weight_name": null, "component_paths": {"text_encoder": "/root/autodl-tmp/models/sana-video2-sp-pinned/gemma-2-2b-it", "vae": "/root/autodl-tmp/models/sana-video2-sp-pinned/ltx-2.3-vae"}, "component_weights_paths": {}, "component_direct_gpu_weight_loading": {}, "component_quantizations": {}, "component_precisions": {}, "component_quantization_ignored_layers": {}, "load_diffusion_decoder": false, "transformer_weights_path": null, "minimax_h3_adaln_cache_path": null, "minimax_h3_adaln_online": false, "minimax_h3_adaln_plan_width": 4, "minimax_h3_adaln_host_cache_gb": 8.0, "quantization": null, "quantization_ignored_layers": null, "lora_target_modules": null, "component_residency": {"all": "resident"}, "cpu_offload_components": null, "dit_cpu_offload": null, "direct_gpu_weight_loading": false, "dit_layerwise_offload": null, "layerwise_offload_components": null, "dit_offload_prefetch_size": 0.0, "dit_layerwise_resident_layers": 0.0, "dit_layerwise_residency_policy": "leading", "dit_layerwise_residency_lifetime": "forward", "layerwise_prefetch_size": {}, "layerwise_resident_layers": {}, "layerwise_residency_policy": {}, "layerwise_residency_lifetime": {}, "offload_during_compile": true, "text_encoder_cpu_offload": null, "image_encoder_cpu_offload": null, "vae_cpu_offload": false, "use_fsdp_inference": null, "pin_cpu_memory": true, "ltx2_two_stage_device_mode": null, "comfyui_mode": false, "enable_torch_compile": false, "regional_compile": false, "allow_cudnn_tf32": true, "allow_bf16_reduced_precision_reduction": true, "enable_breakable_cuda_graph": false, "bcg_text_buckets": null, "enable_layerwise_nvtx_marker": false, "warmup_mode": "off", "warmup_resolutions": null, "warmup_num_frames": null, "warmup_steps": 1, "warmup_sampling_params": null, "disable_autocast": true, "master_port": 30005, "host": "127.0.0.1", "port": 30000, "http_graceful_shutdown_timeout": null, "enable_metrics": false, "webui": false, "webui_port": 12312, "scheduler_port": 5617, "scheduler_ports": [5617], "batching_mode": "dynamic", "batching_max_size": 1, "batching_delay_ms": 0.0, "batching_config": null, "enable_batching_metrics": false, "async_output_save": false, "sleep_on_idle": false, "strict_ports": false, "output_path": "outputs/", "input_save_path": "inputs/uploads", "prompt_file_path": null, "model_paths": {}, "model_loaded": {"transformer": true, "vae": true, "video_vae": true, "audio_vae": true, "video_dit": true, "audio_dit": true, "dual_tower_bridge": true}, "boundary_ratio": null, "disagg_role": "monolithic", "disagg_timeout": 3600, "disagg_dispatch_policy": "round_robin", "disagg_mode": false, "disagg_transfer_pool_size": 268435456, "disagg_p2p_hostname": "127.0.0.1", "disagg_ib_device": null, "disagg_server_addr": null, "encoder_urls": null, "prompt_encoder_urls": null, "image_encoder_urls": null, "denoiser_urls": null, "decoder_urls": null, "encoder_tp": null, "denoiser_tp": null, "denoiser_sp": null, "denoiser_ulysses": null, "denoiser_ring": null, "decoder_sp": null, "pool_work_endpoint": null, "pool_result_endpoint": null, "log_level": "info", "log_requests": false, "log_requests_level": 2, "log_requests_format": "text", "log_requests_target": null, "uvicorn_access_log_exclude_prefixes": [], "enable_cache_report": false, "disable_conditioning_cache": false, "conditioning_cache_max_size_mb": 512.0, "enable_trace": false, "otlp_traces_endpoint": "localhost:4317", "otlp_service_name": null, "srt_encoder_url": null, "srt_encoder_connect_timeout": 3.05, "srt_encoder_timeout": 100, "pe_server_url": null, "prompt_enhancer_config": null}
+{"event": "configuration", "quality": "high", "width": 832, "height": 480, "frames": 81, "steps": 50, "strict_numerics": false}
+[11-09 10:31:46] Local mode: True
+[11-09 10:31:46] Starting server...
+Diffusion runtime modules were imported before this worker initialized its platform: sglang.multimodal_gen.configs, sglang.multimodal_gen.configs.attention_roles, sglang.multimodal_gen.configs.models, sglang.multimodal_gen.configs.models.base, sglang.multimodal_gen.configs.models.dits (+146 more). spawn re-executes /root/autodl-tmp/sglang-sana-video2-bf16attn-20261108/bench_quality.py at module scope in every child, so these were built ahead of platform initialization and hook application, and the classes and registrations they created are already past reach. Move the import inside if __name__ == "__main__": or into the function that uses it.
+[11-09 10:31:56] Scheduler (dp replica 0) bind at endpoint: tcp://127.0.0.1:5617
+[11-09 10:31:56] Numerics policy: cudnn TF32 and bf16 reduced-precision reduction enabled. These lower precision below the reference, so quality='exact' is bit-reproducible on this server but not free of approximate library defaults. Pass --allow-cudnn-tf32 false --allow-bf16-reduced-precision-reduction false for the strict contract (slower fp32 convolutions).
+[11-09 10:31:56] torch.compile cache: TORCHINDUCTOR_CACHE_DIR=/root/.cache/sgl_diffusion/torch_compile_cache/inductor TRITON_CACHE_DIR=/root/.cache/sgl_diffusion/torch_compile_cache/triton
+[11-09 10:31:56] Initializing distributed environment with world_size=1, device=cuda:0, timeout=3600
+[11-09 10:31:56] Setting distributed timeout to 3600 seconds
+[11-09 10:31:57] No pipeline_class_name specified, using model_index.json
+[93m[11-09 10:31:57] Skipping pipeline module sglang.multimodal_gen.runtime.pipelines.hunyuan3d_pipeline during discovery due to import failure: No module named 'trimesh'[0;0m
+[93m[11-09 10:31:58] --model-id 'Efficient-Large-Model/SANA-Video_2.0_5B_720p' did not match any registered model; falling back to automatic detection.[0;0m
+[93m[11-09 10:31:58] More than one model name is matched, using the first matched[0;0m
+[11-09 10:31:58] Using pipeline from model_index.json: SanaVideo2Pipeline
+[11-09 10:31:58] Loading pipeline modules...
+[11-09 10:31:58] Loading pipeline modules from config: {'_class_name': 'SanaVideo2Pipeline', '_diffusers_version': '0.37.0', 'text_encoder': ['transformers', 'Gemma2Model'], 'tokenizer': ['transformers', 'AutoTokenizer'], 'vae': ['diffusers', 'AutoencoderKLLTX2Video'], 'transformer': ['diffusers', 'SanaVideo2Transformer3DModel']}
+[11-09 10:31:58] Loading required components: ['text_encoder', 'tokenizer', 'vae', 'transformer']
+[11-09 10:31:58] Memory-aware component load order: ['text_encoder', 'tokenizer', 'vae', 'transformer']
+Loading required modules:   0%|          | 0/4 [00:00<?, ?it/s][11-09 10:31:58] Loading text_encoder from /root/autodl-tmp/models/sana-video2-sp-pinned/gemma-2-2b-it. avail mem: 78.32 GB
+[11-09 10:31:58] Component: text_encoder doesn't have a customized version yet, using native version
+
+Loading weights:   0%|          | 0/288 [00:00<?, ?it/s][ALoading weights: 100%|██████████| 288/288 [00:00<00:00, 8571.71it/s]
+[93m[11-09 10:31:58] Native component text_encoder: Gemma2Model is loaded, performance may be sub-optimal[0;0m
+[11-09 10:31:59] Loaded text_encoder: Gemma2Model (native version). model size: 4.87 GB, vram: 4.87 GB. avail GPU mem: 73.25 GB
+Loading required modules:  25%|██▌       | 1/4 [00:01<00:03,  1.00s/it][11-09 10:31:59] Loading tokenizer from /root/autodl-tmp/models/sana-video2-sp-pinned/gemma-2-2b-it. avail mem: 73.25 GB
+[11-09 10:32:00] Loaded tokenizer: GemmaTokenizer (sgl-diffusion version). model size: NA GB, weights: none. avail GPU mem: 73.25 GB
+Loading required modules:  50%|█████     | 2/4 [00:01<00:01,  1.10it/s][11-09 10:32:00] Loading vae from /root/autodl-tmp/models/sana-video2-sp-pinned/ltx-2.3-vae/vae. avail mem: 73.25 GB
+[11-09 10:32:00] Loaded vae: AutoencoderKLLTX2Video (sgl-diffusion version). model size: 1.35 GB, vram: 1.35 GB. avail GPU mem: 71.87 GB
+Loading required modules:  75%|███████▌  | 3/4 [00:02<00:00,  1.28it/s][11-09 10:32:00] Loading transformer from /root/autodl-tmp/models/sana-video2-sp-pinned/sana-video2-5b. avail mem: 71.87 GB
+[11-09 10:32:07] Loaded transformer: SanaVideo2Transformer3DModel (sgl-diffusion version). model size: 8.33 GB, vram: 8.32 GB, host pageable: 0.00 GB. avail GPU mem: 63.31 GB
+Loading required modules: 100%|██████████| 4/4 [00:08<00:00,  3.01s/it]Loading required modules: 100%|██████████| 4/4 [00:08<00:00,  2.23s/it]
+[11-09 10:32:07] Creating pipeline stages...
+[11-09 10:32:07] Pipeline instantiated
+[11-09 10:32:07] Worker 0: Initialized device, model, and distributed environment.
+[11-09 10:32:07] Worker 0: Scheduler loop started.
+[11-09 10:32:07] [server-load] workers_ready_monotonic_ns=23306311303932840
+{"event": "startup", "seconds": 21.30097459256649}
+[11-09 10:32:07] Adjusting number of frames from 81 to 81 based on model
+[11-09 10:32:07] Processing 1 grouped request(s)
+[11-09 10:32:07] Sampling params:
+                       width: 832
+                      height: 480
+                  num_frames: 81
+                         fps: 24
+                      prompt: <redacted, len=53>
+                  neg_prompt: <redacted, len=285>
+                        seed: 42
+                 infer_steps: 50
+      num_outputs_per_prompt: 1
+              guidance_scale: 8.0
+     embedded_guidance_scale: 6.0
+                    n_tokens: None
+                  flow_shift: 12.0
+                  image_path: None
+                 save_output: True
+            output_file_path: /root/autodl-tmp/sglang-sana-video2-bf16attn-20261108/artifacts/p480-fp16/high/high-t2v-warmup.mp4
+        
+[11-09 10:32:07] Running pipeline stages: ['InputValidationStage', 'prompt_encoding_stage_primary', 'SanaVideo2LatentPreparationStage', 'SanaVideo2DenoisingStage', 'decoding_stage']
+[11-09 10:32:07] [InputValidationStage] started...
+[11-09 10:32:07] [InputValidationStage] finished in 0.0001 seconds
+[11-09 10:32:07] [SanaVideo2TextEncodingStage] started...
+[11-09 10:32:08] [SanaVideo2TextEncodingStage] finished in 0.6671 seconds
+[11-09 10:32:08] [SanaVideo2LatentPreparationStage] started...
+[11-09 10:32:08] [SanaVideo2LatentPreparationStage] finished in 0.0009 seconds
+[11-09 10:32:08] [SanaVideo2DenoisingStage] started...
+  0%|          | 0/50 [00:00<?, ?it/s]  2%|▏         | 1/50 [00:00<00:35,  1.37it/s]  4%|▍         | 2/50 [00:01<00:31,  1.54it/s]  6%|▌         | 3/50 [00:01<00:26,  1.81it/s]  8%|▊         | 4/50 [00:02<00:26,  1.75it/s] 10%|█         | 5/50 [00:02<00:26,  1.73it/s] 12%|█▏        | 6/50 [00:03<00:25,  1.71it/s] 14%|█▍        | 7/50 [00:04<00:25,  1.70it/s] 16%|█▌        | 8/50 [00:04<00:24,  1.69it/s] 18%|█▊        | 9/50 [00:05<00:24,  1.69it/s] 20%|██        | 10/50 [00:05<00:23,  1.69it/s] 22%|██▏       | 11/50 [00:06<00:23,  1.68it/s] 24%|██▍       | 12/50 [00:07<00:22,  1.68it/s] 26%|██▌       | 13/50 [00:07<00:21,  1.68it/s] 28%|██▊       | 14/50 [00:08<00:21,  1.68it/s] 30%|███       | 15/50 [00:08<00:20,  1.68it/s] 32%|███▏      | 16/50 [00:09<00:20,  1.68it/s] 34%|███▍      | 17/50 [00:10<00:19,  1.68it/s] 36%|███▌      | 18/50 [00:10<00:19,  1.68it/s] 38%|███▊      | 19/50 [00:11<00:18,  1.68it/s] 40%|████      | 20/50 [00:11<00:17,  1.68it/s] 42%|████▏     | 21/50 [00:12<00:17,  1.68it/s] 44%|████▍     | 22/50 [00:13<00:16,  1.68it/s] 46%|████▌     | 23/50 [00:13<00:16,  1.68it/s] 48%|████▊     | 24/50 [00:14<00:15,  1.68it/s] 50%|█████     | 25/50 [00:14<00:14,  1.68it/s] 52%|█████▏    | 26/50 [00:15<00:14,  1.68it/s] 54%|█████▍    | 27/50 [00:16<00:13,  1.68it/s] 56%|█████▌    | 28/50 [00:16<00:13,  1.68it/s] 58%|█████▊    | 29/50 [00:17<00:12,  1.68it/s] 60%|██████    | 30/50 [00:17<00:11,  1.68it/s] 62%|██████▏   | 31/50 [00:18<00:11,  1.68it/s] 64%|██████▍   | 32/50 [00:19<00:10,  1.68it/s] 66%|██████▌   | 33/50 [00:19<00:10,  1.68it/s] 68%|██████▊   | 34/50 [00:20<00:09,  1.68it/s] 70%|███████   | 35/50 [00:20<00:08,  1.68it/s] 72%|███████▏  | 36/50 [00:21<00:08,  1.68it/s] 74%|███████▍  | 37/50 [00:22<00:07,  1.68it/s] 76%|███████▌  | 38/50 [00:22<00:07,  1.68it/s] 78%|███████▊  | 39/50 [00:23<00:06,  1.68it/s] 80%|████████  | 40/50 [00:23<00:05,  1.68it/s] 82%|████████▏ | 41/50 [00:24<00:05,  1.68it/s] 84%|████████▍ | 42/50 [00:24<00:04,  1.68it/s] 86%|████████▌ | 43/50 [00:25<00:04,  1.68it/s] 88%|████████▊ | 44/50 [00:26<00:03,  1.68it/s] 90%|█████████ | 45/50 [00:26<00:02,  1.68it/s] 92%|█████████▏| 46/50 [00:27<00:02,  1.68it/s] 94%|█████████▍| 47/50 [00:27<00:01,  1.68it/s] 96%|█████████▌| 48/50 [00:28<00:01,  1.68it/s] 98%|█████████▊| 49/50 [00:29<00:00,  1.68it/s]100%|██████████| 50/50 [00:29<00:00,  1.68it/s]100%|██████████| 50/50 [00:29<00:00,  1.68it/s]
+[11-09 10:32:38] [SanaVideo2DenoisingStage] finished in 29.7862 seconds
+[11-09 10:32:38] [DecodingStage] started...
+[11-09 10:32:38] [DecodingStage] finished in 0.6220 seconds
+[11-09 10:32:39] Output saved to [1;36m/root/autodl-tmp/sglang-sana-video2-bf16attn-20261108/artifacts/p480-fp16/high/high-t2v-warmup.mp4[0;0m
+[11-09 10:32:39] Pixel data generated successfully in [92m31.78[0;0m seconds
+[11-09 10:32:39] Memory usage - Max peak: 21142.00 MB, Avg peak: 21142.00 MB
+{"event": "request", "quality": "high", "task": "t2v", "label": "warmup", "frames": 81, "steps": 50, "elapsed_saved_request_s": 31.783547040075064, "generation_time_s": 0.0, "peak_memory_mb": 21142.0, "metrics": {"request_id": null, "stages": {"Scheduler.return_result.spill_arrays": 0.6043724715709686, "Scheduler.return_result.spill_cuda": 0.1568719744682312, "SchedulerClient.materialize_file_refs": 0.0130385160446167}, "denoising_stages": ["SanaVideo2DenoisingStage"], "steps": [], "total_duration_ms": 31085.075635463, "warmup_failed": false, "memory_snapshots": {"before_forward": {"allocated_mb": 14956.01, "reserved_mb": 15368.0, "peak_allocated_mb": 14956.01, "peak_reserved_mb": 15368.0, "peak_host_anon_mb": 3840.88}, "after_forward": {"allocated_mb": 15166.91, "reserved_mb": 21142.0, "peak_allocated_mb": 18229.7, "peak_reserved_mb": 21142.0, "peak_host_anon_mb": 3847.65}}}, "output_path": "/root/autodl-tmp/sglang-sana-video2-bf16attn-20261108/artifacts/p480-fp16/high/high-t2v-warmup.mp4", "mp4_sha256": "f8590b5a065e67bcc11448d7dc4c59eb02cbc4b49d59f0779e70cf317b0bb3a9", "decoded_rgb_sha256": "42ce145366421770dec747a2a682d3e6848249341691ac534651fec187a89e94", "video_width": 832, "video_height": 480, "video_fps": "24", "video_frames": 81}
+[11-09 10:32:39] Adjusting number of frames from 81 to 81 based on model
+[11-09 10:32:39] Processing 1 grouped request(s)
+[11-09 10:32:39] Sampling params:
+                       width: 832
+                      height: 480
+                  num_frames: 81
+                         fps: 24
+                      prompt: <redacted, len=53>
+                  neg_prompt: <redacted, len=285>
+                        seed: 42
+                 infer_steps: 50
+      num_outputs_per_prompt: 1
+              guidance_scale: 8.0
+     embedded_guidance_scale: 6.0
+                    n_tokens: None
+                  flow_shift: 12.0
+                  image_path: None
+                 save_output: True
+            output_file_path: /root/autodl-tmp/sglang-sana-video2-bf16attn-20261108/artifacts/p480-fp16/high/high-t2v-measure1.mp4
+        
+[11-09 10:32:39] Running pipeline stages: ['InputValidationStage', 'prompt_encoding_stage_primary', 'SanaVideo2LatentPreparationStage', 'SanaVideo2DenoisingStage', 'decoding_stage']
+[11-09 10:32:39] [InputValidationStage] started...
+[11-09 10:32:39] [InputValidationStage] finished in 0.0000 seconds
+[11-09 10:32:39] [SanaVideo2TextEncodingStage] started...
+[11-09 10:32:39] [SanaVideo2TextEncodingStage] finished in 0.0519 seconds
+[11-09 10:32:39] [SanaVideo2LatentPreparationStage] started...
+[11-09 10:32:39] [SanaVideo2LatentPreparationStage] finished in 0.0001 seconds
+[11-09 10:32:39] [SanaVideo2DenoisingStage] started...
+  0%|          | 0/50 [00:00<?, ?it/s]  2%|▏         | 1/50 [00:00<00:21,  2.29it/s]  4%|▍         | 2/50 [00:01<00:25,  1.88it/s]  6%|▌         | 3/50 [00:01<00:26,  1.78it/s]  8%|▊         | 4/50 [00:02<00:26,  1.74it/s] 10%|█         | 5/50 [00:02<00:26,  1.72it/s] 12%|█▏        | 6/50 [00:03<00:25,  1.70it/s] 14%|█▍        | 7/50 [00:04<00:25,  1.69it/s] 16%|█▌        | 8/50 [00:04<00:24,  1.69it/s] 18%|█▊        | 9/50 [00:05<00:24,  1.68it/s] 20%|██        | 10/50 [00:05<00:23,  1.68it/s] 22%|██▏       | 11/50 [00:06<00:23,  1.68it/s] 24%|██▍       | 12/50 [00:07<00:22,  1.68it/s] 26%|██▌       | 13/50 [00:07<00:22,  1.68it/s] 28%|██▊       | 14/50 [00:08<00:21,  1.68it/s] 30%|███       | 15/50 [00:08<00:20,  1.68it/s] 32%|███▏      | 16/50 [00:09<00:20,  1.68it/s] 34%|███▍      | 17/50 [00:09<00:19,  1.68it/s] 36%|███▌      | 18/50 [00:10<00:19,  1.68it/s] 38%|███▊      | 19/50 [00:11<00:18,  1.68it/s] 40%|████      | 20/50 [00:11<00:17,  1.67it/s] 42%|████▏     | 21/50 [00:12<00:17,  1.67it/s] 44%|████▍     | 22/50 [00:12<00:16,  1.67it/s] 46%|████▌     | 23/50 [00:13<00:16,  1.67it/s] 48%|████▊     | 24/50 [00:14<00:15,  1.67it/s] 50%|█████     | 25/50 [00:14<00:14,  1.67it/s] 52%|█████▏    | 26/50 [00:15<00:14,  1.67it/s] 54%|█████▍    | 27/50 [00:15<00:13,  1.67it/s] 56%|█████▌    | 28/50 [00:16<00:13,  1.67it/s] 58%|█████▊    | 29/50 [00:17<00:12,  1.67it/s] 60%|██████    | 30/50 [00:17<00:11,  1.67it/s] 62%|██████▏   | 31/50 [00:18<00:11,  1.67it/s] 64%|██████▍   | 32/50 [00:18<00:10,  1.67it/s] 66%|██████▌   | 33/50 [00:19<00:10,  1.67it/s] 68%|██████▊   | 34/50 [00:20<00:09,  1.67it/s] 70%|███████   | 35/50 [00:20<00:08,  1.67it/s] 72%|███████▏  | 36/50 [00:21<00:08,  1.67it/s] 74%|███████▍  | 37/50 [00:21<00:07,  1.67it/s] 76%|███████▌  | 38/50 [00:22<00:07,  1.67it/s] 78%|███████▊  | 39/50 [00:23<00:06,  1.67it/s] 80%|████████  | 40/50 [00:23<00:05,  1.67it/s] 82%|████████▏ | 41/50 [00:24<00:05,  1.67it/s] 84%|████████▍ | 42/50 [00:24<00:04,  1.67it/s] 86%|████████▌ | 43/50 [00:25<00:04,  1.67it/s] 88%|████████▊ | 44/50 [00:26<00:03,  1.67it/s] 90%|█████████ | 45/50 [00:26<00:02,  1.67it/s] 92%|█████████▏| 46/50 [00:27<00:02,  1.67it/s] 94%|█████████▍| 47/50 [00:27<00:01,  1.63it/s] 96%|█████████▌| 48/50 [00:28<00:01,  1.68it/s] 98%|█████████▊| 49/50 [00:29<00:00,  1.67it/s]100%|██████████| 50/50 [00:29<00:00,  1.67it/s]100%|██████████| 50/50 [00:29<00:00,  1.68it/s]
+[11-09 10:33:09] [SanaVideo2DenoisingStage] finished in 29.7451 seconds
+[11-09 10:33:09] [DecodingStage] started...
+[11-09 10:33:09] [DecodingStage] finished in 0.1096 seconds
+[11-09 10:33:10] Output saved to [1;36m/root/autodl-tmp/sglang-sana-video2-bf16attn-20261108/artifacts/p480-fp16/high/high-t2v-measure1.mp4[0;0m
+[11-09 10:33:10] Pixel data generated successfully in [92m31.25[0;0m seconds
+[11-09 10:33:10] Memory usage - Max peak: 21142.00 MB, Avg peak: 21142.00 MB
+{"event": "request", "quality": "high", "task": "t2v", "label": "measure1", "frames": 81, "steps": 50, "elapsed_saved_request_s": 31.25309120118618, "generation_time_s": 0.0, "peak_memory_mb": 21142.0, "metrics": {"request_id": null, "stages": {"Scheduler.return_result.spill_arrays": 0.32808631658554077, "Scheduler.return_result.spill_cuda": 0.1354217529296875, "SchedulerClient.materialize_file_refs": 0.014171004295349121}, "denoising_stages": ["SanaVideo2DenoisingStage"], "steps": [], "total_duration_ms": 29910.16623750329, "warmup_failed": false, "memory_snapshots": {"before_forward": {"allocated_mb": 14981.81, "reserved_mb": 21142.0, "peak_allocated_mb": 14981.81, "peak_reserved_mb": 21142.0, "peak_host_anon_mb": 3847.75}, "after_forward": {"allocated_mb": 15172.01, "reserved_mb": 21142.0, "peak_allocated_mb": 18234.8, "peak_reserved_mb": 21142.0, "peak_host_anon_mb": 3847.77}}}, "output_path": "/root/autodl-tmp/sglang-sana-video2-bf16attn-20261108/artifacts/p480-fp16/high/high-t2v-measure1.mp4", "mp4_sha256": "f8590b5a065e67bcc11448d7dc4c59eb02cbc4b49d59f0779e70cf317b0bb3a9", "decoded_rgb_sha256": "42ce145366421770dec747a2a682d3e6848249341691ac534651fec187a89e94", "video_width": 832, "video_height": 480, "video_fps": "24", "video_frames": 81}
+[11-09 10:33:11] Adjusting number of frames from 81 to 81 based on model
+[11-09 10:33:11] Processing 1 grouped request(s)
+[11-09 10:33:11] Sampling params:
+                       width: 832
+                      height: 480
+                  num_frames: 81
+                         fps: 24
+                      prompt: <redacted, len=53>
+                  neg_prompt: <redacted, len=285>
+                        seed: 42
+                 infer_steps: 50
+      num_outputs_per_prompt: 1
+              guidance_scale: 8.0
+     embedded_guidance_scale: 6.0
+                    n_tokens: None
+                  flow_shift: 12.0
+                  image_path: /root/autodl-tmp/sglang-sana-video2-20260928/artifacts/pr-first-frame.png
+                 save_output: True
+            output_file_path: /root/autodl-tmp/sglang-sana-video2-bf16attn-20261108/artifacts/p480-fp16/high/high-ti2v-warmup.mp4
+        
+[11-09 10:33:11] Running pipeline stages: ['InputValidationStage', 'prompt_encoding_stage_primary', 'SanaVideo2LatentPreparationStage', 'SanaVideo2DenoisingStage', 'decoding_stage']
+[11-09 10:33:11] [InputValidationStage] started...
+[11-09 10:33:11] [InputValidationStage] finished in 0.0147 seconds
+[11-09 10:33:11] [SanaVideo2TextEncodingStage] started...
+[11-09 10:33:11] [SanaVideo2TextEncodingStage] finished in 0.0538 seconds
+[11-09 10:33:11] [SanaVideo2LatentPreparationStage] started...
+[11-09 10:33:11] [SanaVideo2LatentPreparationStage] finished in 0.0519 seconds
+[11-09 10:33:11] [SanaVideo2DenoisingStage] started...
+  0%|          | 0/50 [00:00<?, ?it/s]  2%|▏         | 1/50 [00:00<00:30,  1.62it/s]  4%|▍         | 2/50 [00:01<00:24,  1.95it/s]  6%|▌         | 3/50 [00:01<00:25,  1.81it/s]  8%|▊         | 4/50 [00:02<00:26,  1.75it/s] 10%|█         | 5/50 [00:02<00:26,  1.72it/s] 12%|█▏        | 6/50 [00:03<00:25,  1.70it/s] 14%|█▍        | 7/50 [00:04<00:25,  1.69it/s] 16%|█▌        | 8/50 [00:04<00:25,  1.68it/s] 18%|█▊        | 9/50 [00:05<00:24,  1.67it/s] 20%|██        | 10/50 [00:05<00:23,  1.67it/s] 22%|██▏       | 11/50 [00:06<00:23,  1.67it/s] 24%|██▍       | 12/50 [00:07<00:22,  1.67it/s] 26%|██▌       | 13/50 [00:07<00:22,  1.67it/s] 28%|██▊       | 14/50 [00:08<00:21,  1.67it/s] 30%|███       | 15/50 [00:08<00:21,  1.66it/s] 32%|███▏      | 16/50 [00:09<00:20,  1.66it/s] 34%|███▍      | 17/50 [00:10<00:19,  1.66it/s] 36%|███▌      | 18/50 [00:10<00:19,  1.66it/s] 38%|███▊      | 19/50 [00:11<00:18,  1.66it/s] 40%|████      | 20/50 [00:11<00:18,  1.66it/s] 42%|████▏     | 21/50 [00:12<00:17,  1.66it/s] 44%|████▍     | 22/50 [00:13<00:16,  1.66it/s] 46%|████▌     | 23/50 [00:13<00:16,  1.66it/s] 48%|████▊     | 24/50 [00:14<00:15,  1.66it/s] 50%|█████     | 25/50 [00:14<00:15,  1.66it/s] 52%|█████▏    | 26/50 [00:15<00:14,  1.66it/s] 54%|█████▍    | 27/50 [00:16<00:13,  1.66it/s] 56%|█████▌    | 28/50 [00:16<00:13,  1.66it/s] 58%|█████▊    | 29/50 [00:17<00:12,  1.66it/s] 60%|██████    | 30/50 [00:17<00:12,  1.66it/s] 62%|██████▏   | 31/50 [00:18<00:11,  1.66it/s] 64%|██████▍   | 32/50 [00:19<00:10,  1.66it/s] 66%|██████▌   | 33/50 [00:19<00:10,  1.66it/s] 68%|██████▊   | 34/50 [00:20<00:09,  1.66it/s] 70%|███████   | 35/50 [00:20<00:09,  1.66it/s] 72%|███████▏  | 36/50 [00:21<00:08,  1.66it/s] 74%|███████▍  | 37/50 [00:22<00:07,  1.66it/s] 76%|███████▌  | 38/50 [00:22<00:07,  1.66it/s] 78%|███████▊  | 39/50 [00:23<00:06,  1.66it/s] 80%|████████  | 40/50 [00:23<00:06,  1.66it/s] 82%|████████▏ | 41/50 [00:24<00:05,  1.66it/s] 84%|████████▍ | 42/50 [00:25<00:04,  1.66it/s] 86%|████████▌ | 43/50 [00:25<00:04,  1.66it/s] 88%|████████▊ | 44/50 [00:26<00:03,  1.67it/s] 90%|█████████ | 45/50 [00:26<00:03,  1.67it/s] 92%|█████████▏| 46/50 [00:27<00:02,  1.67it/s] 94%|█████████▍| 47/50 [00:28<00:01,  1.67it/s] 96%|█████████▌| 48/50 [00:28<00:01,  1.67it/s] 98%|█████████▊| 49/50 [00:29<00:00,  1.67it/s]100%|██████████| 50/50 [00:29<00:00,  1.67it/s]100%|██████████| 50/50 [00:29<00:00,  1.67it/s]
+[11-09 10:33:41] [SanaVideo2DenoisingStage] finished in 29.9127 seconds
+[11-09 10:33:41] [DecodingStage] started...
+[11-09 10:33:41] [DecodingStage] finished in 0.1067 seconds
+[11-09 10:33:42] Output saved to [1;36m/root/autodl-tmp/sglang-sana-video2-bf16attn-20261108/artifacts/p480-fp16/high/high-ti2v-warmup.mp4[0;0m
+[11-09 10:33:42] Pixel data generated successfully in [92m31.27[0;0m seconds
+[11-09 10:33:42] Memory usage - Max peak: 21142.00 MB, Avg peak: 21142.00 MB
+{"event": "request", "quality": "high", "task": "ti2v", "label": "warmup", "frames": 81, "steps": 50, "elapsed_saved_request_s": 31.266407810151577, "generation_time_s": 0.0, "peak_memory_mb": 21142.0, "metrics": {"request_id": null, "stages": {"Scheduler.return_result.spill_arrays": 0.2045668661594391, "Scheduler.return_result.spill_cuda": 0.13344734907150269, "SchedulerClient.materialize_file_refs": 0.008713454008102417}, "denoising_stages": ["SanaVideo2DenoisingStage"], "steps": [], "total_duration_ms": 30143.559996038675, "warmup_failed": false, "memory_snapshots": {"before_forward": {"allocated_mb": 14981.81, "reserved_mb": 21142.0, "peak_allocated_mb": 14981.81, "peak_reserved_mb": 21142.0, "peak_host_anon_mb": 3847.79}, "after_forward": {"allocated_mb": 15172.01, "reserved_mb": 21142.0, "peak_allocated_mb": 18234.8, "peak_reserved_mb": 21142.0, "peak_host_anon_mb": 3848.07}}}, "output_path": "/root/autodl-tmp/sglang-sana-video2-bf16attn-20261108/artifacts/p480-fp16/high/high-ti2v-warmup.mp4", "mp4_sha256": "8b8beedd037a4ae3f2c00c24aee55f5fab43493d06e27e91e8aece5f0a3d09ff", "decoded_rgb_sha256": "0a11e432a45eec7812351d8937559c034633ebe11d960c0ecf038d04651ea0fc", "video_width": 832, "video_height": 480, "video_fps": "24", "video_frames": 81}
+[11-09 10:33:43] Adjusting number of frames from 81 to 81 based on model
+[11-09 10:33:43] Processing 1 grouped request(s)
+[11-09 10:33:43] Sampling params:
+                       width: 832
+                      height: 480
+                  num_frames: 81
+                         fps: 24
+                      prompt: <redacted, len=53>
+                  neg_prompt: <redacted, len=285>
+                        seed: 42
+                 infer_steps: 50
+      num_outputs_per_prompt: 1
+              guidance_scale: 8.0
+     embedded_guidance_scale: 6.0
+                    n_tokens: None
+                  flow_shift: 12.0
+                  image_path: /root/autodl-tmp/sglang-sana-video2-20260928/artifacts/pr-first-frame.png
+                 save_output: True
+            output_file_path: /root/autodl-tmp/sglang-sana-video2-bf16attn-20261108/artifacts/p480-fp16/high/high-ti2v-measure1.mp4
+        
+[11-09 10:33:43] Running pipeline stages: ['InputValidationStage', 'prompt_encoding_stage_primary', 'SanaVideo2LatentPreparationStage', 'SanaVideo2DenoisingStage', 'decoding_stage']
+[11-09 10:33:43] [InputValidationStage] started...
+[11-09 10:33:43] [InputValidationStage] finished in 0.0111 seconds
+[11-09 10:33:43] [SanaVideo2TextEncodingStage] started...
+[11-09 10:33:43] [SanaVideo2TextEncodingStage] finished in 0.0520 seconds
+[11-09 10:33:43] [SanaVideo2LatentPreparationStage] started...
+[11-09 10:33:43] [SanaVideo2LatentPreparationStage] finished in 0.0087 seconds
+[11-09 10:33:43] [SanaVideo2DenoisingStage] started...
+  0%|          | 0/50 [00:00<?, ?it/s]  2%|▏         | 1/50 [00:00<00:29,  1.67it/s]  4%|▍         | 2/50 [00:01<00:24,  1.98it/s]  6%|▌         | 3/50 [00:01<00:25,  1.83it/s]  8%|▊         | 4/50 [00:02<00:26,  1.76it/s] 10%|█         | 5/50 [00:02<00:26,  1.73it/s] 12%|█▏        | 6/50 [00:03<00:25,  1.71it/s] 14%|█▍        | 7/50 [00:04<00:25,  1.70it/s] 16%|█▌        | 8/50 [00:04<00:24,  1.69it/s] 18%|█▊        | 9/50 [00:05<00:24,  1.68it/s] 20%|██        | 10/50 [00:05<00:23,  1.68it/s] 22%|██▏       | 11/50 [00:06<00:23,  1.68it/s] 24%|██▍       | 12/50 [00:07<00:22,  1.67it/s] 26%|██▌       | 13/50 [00:07<00:22,  1.67it/s] 28%|██▊       | 14/50 [00:08<00:21,  1.67it/s] 30%|███       | 15/50 [00:08<00:20,  1.67it/s] 32%|███▏      | 16/50 [00:09<00:20,  1.67it/s] 34%|███▍      | 17/50 [00:10<00:19,  1.67it/s] 36%|███▌      | 18/50 [00:10<00:19,  1.67it/s] 38%|███▊      | 19/50 [00:11<00:18,  1.67it/s] 40%|████      | 20/50 [00:11<00:17,  1.67it/s] 42%|████▏     | 21/50 [00:12<00:17,  1.67it/s] 44%|████▍     | 22/50 [00:13<00:16,  1.67it/s] 46%|████▌     | 23/50 [00:13<00:16,  1.67it/s] 48%|████▊     | 24/50 [00:14<00:15,  1.67it/s] 50%|█████     | 25/50 [00:14<00:14,  1.67it/s] 52%|█████▏    | 26/50 [00:15<00:14,  1.67it/s] 54%|█████▍    | 27/50 [00:15<00:13,  1.67it/s] 56%|█████▌    | 28/50 [00:16<00:13,  1.67it/s] 58%|█████▊    | 29/50 [00:17<00:12,  1.67it/s] 60%|██████    | 30/50 [00:17<00:11,  1.67it/s] 62%|██████▏   | 31/50 [00:18<00:11,  1.67it/s] 64%|██████▍   | 32/50 [00:18<00:10,  1.67it/s] 66%|██████▌   | 33/50 [00:19<00:10,  1.67it/s] 68%|██████▊   | 34/50 [00:20<00:09,  1.67it/s] 70%|███████   | 35/50 [00:20<00:08,  1.67it/s] 72%|███████▏  | 36/50 [00:21<00:08,  1.67it/s] 74%|███████▍  | 37/50 [00:21<00:07,  1.67it/s] 76%|███████▌  | 38/50 [00:22<00:07,  1.67it/s] 78%|███████▊  | 39/50 [00:23<00:06,  1.67it/s] 80%|████████  | 40/50 [00:23<00:05,  1.67it/s] 82%|████████▏ | 41/50 [00:24<00:05,  1.67it/s] 84%|████████▍ | 42/50 [00:24<00:04,  1.67it/s] 86%|████████▌ | 43/50 [00:25<00:04,  1.67it/s] 88%|████████▊ | 44/50 [00:26<00:03,  1.67it/s] 90%|█████████ | 45/50 [00:26<00:02,  1.67it/s] 92%|█████████▏| 46/50 [00:27<00:02,  1.67it/s] 94%|█████████▍| 47/50 [00:27<00:01,  1.67it/s] 96%|█████████▌| 48/50 [00:28<00:01,  1.67it/s] 98%|█████████▊| 49/50 [00:29<00:00,  1.67it/s]100%|██████████| 50/50 [00:29<00:00,  1.67it/s]100%|██████████| 50/50 [00:29<00:00,  1.68it/s]
+[11-09 10:34:12] [SanaVideo2DenoisingStage] finished in 29.7452 seconds
+[11-09 10:34:12] [DecodingStage] started...
+[11-09 10:34:13] [DecodingStage] finished in 0.1062 seconds
+[11-09 10:34:14] Output saved to [1;36m/root/autodl-tmp/sglang-sana-video2-bf16attn-20261108/artifacts/p480-fp16/high/high-ti2v-measure1.mp4[0;0m
+[11-09 10:34:14] Pixel data generated successfully in [92m31.08[0;0m seconds
+[11-09 10:34:14] Memory usage - Max peak: 21142.00 MB, Avg peak: 21142.00 MB
+{"event": "request", "quality": "high", "task": "ti2v", "label": "measure1", "frames": 81, "steps": 50, "elapsed_saved_request_s": 31.07833418250084, "generation_time_s": 0.0, "peak_memory_mb": 21142.0, "metrics": {"request_id": null, "stages": {"Scheduler.return_result.spill_arrays": 0.2949535846710205, "Scheduler.return_result.spill_cuda": 0.13116374611854553, "SchedulerClient.materialize_file_refs": 0.00685080885887146}, "denoising_stages": ["SanaVideo2DenoisingStage"], "steps": [], "total_duration_ms": 29926.61714553833, "warmup_failed": false, "memory_snapshots": {"before_forward": {"allocated_mb": 14981.81, "reserved_mb": 21142.0, "peak_allocated_mb": 14981.81, "peak_reserved_mb": 21142.0, "peak_host_anon_mb": 3848.21}, "after_forward": {"allocated_mb": 15172.01, "reserved_mb": 21142.0, "peak_allocated_mb": 18234.39, "peak_reserved_mb": 21142.0, "peak_host_anon_mb": 3848.21}}}, "output_path": "/root/autodl-tmp/sglang-sana-video2-bf16attn-20261108/artifacts/p480-fp16/high/high-ti2v-measure1.mp4", "mp4_sha256": "8b8beedd037a4ae3f2c00c24aee55f5fab43493d06e27e91e8aece5f0a3d09ff", "decoded_rgb_sha256": "0a11e432a45eec7812351d8937559c034633ebe11d960c0ecf038d04651ea0fc", "video_width": 832, "video_height": 480, "video_fps": "24", "video_frames": 81}
+[11-09 10:34:15] Worker 0: Shutdown complete.

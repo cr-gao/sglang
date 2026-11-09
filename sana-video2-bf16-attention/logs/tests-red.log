@@ -1,0 +1,32 @@
+.......FF.....                                                           [100%]
+=================================== FAILURES ===================================
+_____ TestSanaVideo2.test_softmax_attention_quality_path_matches_reference _____
+
+self = <test_sana_video2.TestSanaVideo2 testMethod=test_softmax_attention_quality_path_matches_reference>
+
+    @unittest.skipUnless(torch.cuda.is_available(), "requires CUDA")
+    def test_softmax_attention_quality_path_matches_reference(self):
+>       from sglang.kernels.ops.diffusion import SANA_VIDEO2_SOFTMAX_ATTENTION
+E       ImportError: cannot import name 'SANA_VIDEO2_SOFTMAX_ATTENTION' from 'sglang.kernels.ops.diffusion' (/root/autodl-tmp/sglang-sana-video2-bf16attn-20261108/worktree/python/sglang/kernels/ops/diffusion/__init__.py)
+
+python/sglang/multimodal_gen/test/unit/test_sana_video2.py:168: ImportError
+_____ TestSanaVideo2.test_softmax_attention_site_starts_on_reference_path ______
+
+self = <test_sana_video2.TestSanaVideo2 testMethod=test_softmax_attention_site_starts_on_reference_path>
+
+    def test_softmax_attention_site_starts_on_reference_path(self):
+>       from sglang.kernels.ops.diffusion import SANA_VIDEO2_SOFTMAX_ATTENTION
+E       ImportError: cannot import name 'SANA_VIDEO2_SOFTMAX_ATTENTION' from 'sglang.kernels.ops.diffusion' (/root/autodl-tmp/sglang-sana-video2-bf16attn-20261108/worktree/python/sglang/kernels/ops/diffusion/__init__.py)
+
+python/sglang/multimodal_gen/test/unit/test_sana_video2.py:155: ImportError
+=============================== warnings summary ===============================
+../../vllm-omni/.venv/lib/python3.12/site-packages/torch/jit/_script.py:365: 14 warnings
+  /root/autodl-tmp/vllm-omni/.venv/lib/python3.12/site-packages/torch/jit/_script.py:365: DeprecationWarning: `torch.jit.script_method` is deprecated. Please switch to `torch.compile` or `torch.export`.
+    warnings.warn(
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED test::TestSanaVideo2::test_softmax_attention_quality_path_matches_reference
+FAILED test::TestSanaVideo2::test_softmax_attention_site_starts_on_reference_path
+2 failed, 12 passed, 24 deselected, 14 warnings in 1.83s
+exit=1
